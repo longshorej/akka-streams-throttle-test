@@ -66,7 +66,6 @@ class Client()(implicit system: ActorSystem, ec: ExecutionContext) {
           system.log.info("TOKEN={} two second delay is over", token.value)
         }
     }
-    .buffer(10, OverflowStrategy.backpressure)
     .mergeSubstreams
     .toMat(Sink.ignore)(Keep.left)
     .run()
